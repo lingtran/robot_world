@@ -1,0 +1,26 @@
+<h1>Meet Your Robots</h1>
+
+<table id="all-table" class="table" style="width:100%">
+  <tr>
+    <th>ID</th>
+    <th>Avatar</th>
+    <th>Name</th>
+    <th>Make some change!</th>
+    <th>Perhaps it's time for farewell</th>
+  </tr>
+
+  <% @robots.each do |robot| %>
+    <tr id="robot-<%= robot.id %>">
+      <td> <%= robot.id %> </td>
+      <td> <%= robot.avatar %> </td>
+      <td> <a href="/robots/<%= robot.id %>"> <%= robot.name %> </a></td>
+      <td><a href="/robots/<%= robot.id %>/update">Update</a></td>
+      <td>
+        <form action="/robots/<%= robot.id %>" method="post" class="delete-button" id="delete-<%= robot.id %>">
+          <input type="hidden" name="_method" value="delete">
+          <input id="<%= robot.id %>" type="submit" value="Toodles">
+        </form>
+      </td>
+    </tr>
+  <% end %>
+</table>

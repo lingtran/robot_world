@@ -1,0 +1,19 @@
+body {
+  background-color: #efefef
+  font-family: sans-serif;
+  font-size: 150%
+}
+
+button {
+  background-color: green;
+  color: white;
+  margin: 1px
+}
+
+#return {
+  font-size: 80%
+}
+
+#regular-body {
+  margin: 45px
+}
