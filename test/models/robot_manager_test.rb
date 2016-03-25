@@ -17,22 +17,20 @@ class RobotManagerTest < Minitest::Test
     assert_equal "Justice 1", robot.department
   end
 
-  def test_can_create_raw_robots
-    create_robots
-
-    assert_equal [{"id"=>1, "avatar"=>"www.avatar.fake 1", "name"=>"Esther 1", "city"=>"Gotham 1", "state"=>"Mayhem 1", "birthdate"=>"President's Day 1", "date_hired"=>"03/23/2016 1", "department"=>"Justice 1"}, {"id"=>2, "avatar"=>"www.avatar.fake 2", "name"=>"Esther 2", "city"=>"Gotham 2", "state"=>"Mayhem 2", "birthdate"=>"President's Day 2", "date_hired"=>"03/23/2016 2", "department"=>"Justice 2"}], robot_manager.raw_robots
-  end
-
-  def test_can_access_all_robots
+  def test_can_create_multiple_robots
+    # skip
     create_robots
     all = robot_manager.all
+
+    assert_equal 2, all.count
     assert all.is_a?(Array)
-    assert 2, all.length
     assert_equal Robot, all.first.class
-    assert_equal ["Esther 1", "Esther 2"], all.map { |robot| robot.name }
+    assert_equal ["Esther 1", "Esther 2"], robot_manager.all.map { |robot| robot.name}
+    assert_equal "Esther 2", robot_manager.all.last.name
   end
 
   def test_can_find_robot_with_id
+    # skip
     create_robots
 
     robot = robot_manager.find(1)
@@ -47,24 +45,26 @@ class RobotManagerTest < Minitest::Test
   end
 
   def test_can_update_a_robot
+    # skip
+
     create_robots
 
     robot = robot_manager.find(1)
     assert_equal 1, robot.id
     assert_equal "Gotham 1", robot.city
-
     robot_manager.update(1, {:city=>"Happy Harbor"})
     robot = robot_manager.find(1)
     assert_equal "Happy Harbor", robot.city
   end
 
   def test_can_delete_a_robot
+    # skip
+
     create_robots
 
     assert_equal 2, robot_manager.all.count
 
     assert robot_manager.all.any? { |robot| robot.name == "Esther 2" }
-
     robot_manager.delete(2)
 
     assert_equal 1, robot_manager.all.count
