@@ -1,6 +1,6 @@
 <p>Update away~~~</p>
 
-<form action="/robots/<%= @robot.id %>" method="post" role="form">
+<form action="/robots/<%= @robot.id %>" method="post" role="form" id="update-<%= @robot.id %>">
   <input type="hidden" name="_method" value="put"/>
   <input type="text" name="robot[avatar]" value="<%= @robot.avatar %> "><br>
   <input type="text" name="robot[name]" value="<%= @robot.name %>"><br>
