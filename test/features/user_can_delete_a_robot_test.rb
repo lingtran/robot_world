@@ -1,5 +1,4 @@
 require_relative '../test_helper.rb'
-# have issues selecting the right 'Toodles' button
 
 class UserCanDeleteARobotTest < Minitest::Test
   include TestHelpers

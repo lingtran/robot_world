@@ -20,6 +20,7 @@ module TestHelpers
   def create_robots(num = 2)
     num.times do |i|
       robot_manager.create({
+        :id => "#{i+1}",
         :name => "Esther #{i+1}",
         :avatar => "www.avatar.fake #{i+1}",
         :city => "Gotham #{i+1}",
