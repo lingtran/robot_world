@@ -5,69 +5,55 @@ class RobotManager
     @database = database
   end
 
-  def create(robot)
-    database.from(:robots).insert(robot)
-    # database.transaction do
-    #   database['robots'] ||= []
-    #   database['total'] ||= 0
-    #   database['total'] += 1
-    #   database['robots'] << { "id" => database['total'],
-    #                           "avatar" => robot[:avatar],
-    #                           "name" => robot[:name],
-    #                           "city" => robot[:city],
-    #                           "state" => robot[:state],
-    #                           "birthdate" => robot[:birthdate],
-    #                           "date_hired" => robot[:date_hired],
-    #                           "department" => robot[:department]
-    #                         }
-    # end
+  def dataset
+    database.from(:robots)
   end
 
-  # def raw_robots
-  #   database.from(:robots)
-  #
-  # end
+  def create(robot)
+    dataset.insert(robot)
+  end
 
   def all
-    database.from(:robots).to_a.map { |data| Robot.new(data) }
+    dataset.to_a.map { |data| Robot.new(data) }
   end
 
-  # def raw_robot(id)
-  #   raw_robots.where(:id => id)
-  # end
-
   def find(id)
-    Robot.new(database.from(:robots).where(:id => id).to_a.first)
+    Robot.new(dataset.where(:id => id).to_a.first)
   end
 
   def update(id, robot)
-    database.from(:robots).where(:id => id).update(robot)
-
-    # database.transaction do
-    #   target = database['robots'].find { |robot| robot['id'] == id }
-    #   target['avatar'] = robot[:avatar]
-    #   target['name'] = robot[:name]
-    #   target['city'] = robot[:city]
-    #   target['state'] = robot[:state]
-    #   target['birthdate'] = robot[:birthdate]
-    #   target['date_hired'] = robot[:date_hired]
-    #   target['department'] = robot[:department]
-    # end
+    dataset.where(:id => id).update(robot)
   end
 
   def delete(id)
-    database.from(:robots).where(:id => id).delete
-    # database.transaction do
-    #   database['robots'].delete_if { |robot| robot['id'] == id }
-    #   database['total'] -= 1
-    # end
+    dataset.where(:id => id).delete
   end
 
   def delete_all
-    database.from(:robots).delete
+    dataset.delete
   end
 
   def robot_count
     all.size
+  end
+
+  def average_age
+    RobotStats.new(self).average_age
+  end
+
+  def number_of_robots_hired_annually
+    RobotStats.new(self).annual_hires
+  end
+
+  def number_of_robots_per_department
+    RobotStats.new(self).per_department
+  end
+
+  def number_of_robots_per_city
+    RobotStats.new(self).per_city
+  end
+
+  def number_of_robots_per_state
+    RobotStats.new(self).per_state
   end
 end

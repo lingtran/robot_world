@@ -25,11 +25,15 @@ module TestHelpers
         :avatar => "www.avatar.fake #{i+1}",
         :city => "Gotham #{i+1}",
         :state => "Mayhem #{i+1}",
-        :birthdate => "President's Day #{i+1}",
-        :date_hired => "03/23/2016 #{i+1}",
+        :birthdate => "04/30/1987",
+        :date_hired => "03/25/2015",
         :department => "Justice #{i+1}"
       })
     end
+  end
+
+  def initiate_robot_stats
+    RobotStats.new(robot_manager)
   end
 
 Capybara.app = RobotWorldApp

@@ -18,4 +18,9 @@ class Robot
     @date_hired = data[:date_hired]
     @department = data[:department]
   end
+
+  def age
+    today = Date.today
+    today.year - Date.strptime(birthdate, '%m/%d/%Y').year
+  end
 end
