@@ -1,6 +1,6 @@
 require 'sequel'
 
-database = Sequel.sqlite('db/robot_manager_development.sqlite3')
+database = Sequel.sqlite('db/robot_manager_test.sqlite3')
 
 database.create_table :robots do
   primary_key :id

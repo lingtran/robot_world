@@ -32,6 +32,10 @@ module TestHelpers
     end
   end
 
+  def initiate_robot_stats
+    RobotStats.new(robot_manager)
+  end
+
 Capybara.app = RobotWorldApp
 
   class FeatureTest < Minitest::Test

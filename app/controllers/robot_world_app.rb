@@ -7,15 +7,19 @@ class RobotWorldApp < Sinatra::Base
     @robots = robot_manager
     if @robots.robot_count != 0
       average_age = @robots.average_age
+      annual_hires_count = @robots.number_of_robots_hired_annually
+      per_department_count = @robots.number_of_robots_per_department
+      per_city_count = @robots.number_of_robots_per_city
+      per_state_count = @robots.number_of_robots_per_state
     else
-      message = "Stats pending"
+      message = "Stats are pending"
     end
-    erb :dashboard, :locals => { :average_age => average_age, :message => message}
+    erb :dashboard, :locals => { :average_age => average_age, :annual_hires_count => annual_hires_count, :per_department_count => per_department_count, :per_city_count => per_city_count, :per_state_count => per_state_count, :message => message }
   end
 
   get '/robots' do
     @robots = robot_manager.all
-      erb :index
+    erb :index
   end
 
   get '/robots/create' do
@@ -51,12 +55,12 @@ class RobotWorldApp < Sinatra::Base
     erb :error
   end
 
- def robot_manager
-  if ENV["RACK_ENV"] == "test"
-    database = Sequel.sqlite('db/robot_manager_test.sqlite3')
-  else
-    database = Sequel.sqlite('db/robot_manager_development.sqlite3')
+  def robot_manager
+    if ENV["RACK_ENV"] == "test"
+      database = Sequel.sqlite('db/robot_manager_test.sqlite3')
+    else
+      database = Sequel.sqlite('db/robot_manager_development.sqlite3')
+    end
+    @robot_manager ||= RobotManager.new(database)
   end
-   @robot_manager ||= RobotManager.new(database)
- end
 end

@@ -4,6 +4,8 @@ class RobotManagerTest < Minitest::Test
   include TestHelpers
 
   def test_can_create_a_robot
+    # skip
+
     create_robots
 
     robot = robot_manager.find(1)
@@ -19,6 +21,7 @@ class RobotManagerTest < Minitest::Test
 
   def test_can_create_multiple_robots
     # skip
+
     create_robots
     all = robot_manager.all
 
@@ -31,6 +34,7 @@ class RobotManagerTest < Minitest::Test
 
   def test_can_find_robot_with_id
     # skip
+    
     create_robots
 
     robot = robot_manager.find(1)
@@ -72,6 +76,8 @@ class RobotManagerTest < Minitest::Test
   end
 
   def test_can_delete_all_robots
+    # skip
+
     create_robots
 
     assert_equal 2, robot_manager.all.count
@@ -83,6 +89,8 @@ class RobotManagerTest < Minitest::Test
   end
 
   def test_can_calculate_average_age_of_robots
+    # skip
+
     create_robots
 
     assert_equal 2, robot_manager.robot_count
@@ -97,6 +105,8 @@ class RobotManagerTest < Minitest::Test
   end
 
   def test_can_calculate_number_of_robots_hired_annually
+    # skip
+
     create_robots
 
     assert_equal 2, robot_manager.robot_count
@@ -108,6 +118,8 @@ class RobotManagerTest < Minitest::Test
   end
 
   def test_can_calculate_number_of_robots_in_each_department
+    # skip
+
     create_robots
 
     assert_equal 2, robot_manager.robot_count
@@ -119,6 +131,8 @@ class RobotManagerTest < Minitest::Test
   end
 
   def test_can_calculate_number_of_robots_in_each_city
+    # skip
+
     create_robots
 
     assert_equal 2, robot_manager.robot_count
@@ -132,6 +146,8 @@ class RobotManagerTest < Minitest::Test
   end
 
   def test_can_calculate_number_of_robots_in_each_state
+    # skip
+
     create_robots
 
     assert_equal 2, robot_manager.robot_count
