@@ -5,8 +5,12 @@ class RobotManager
     @database = database
   end
 
+  def dataset
+    database.from(:robots)
+  end
+
   def create(robot)
-    database.from(:robots).insert(robot)
+    dataset.insert(robot)
     # database.transaction do
     #   database['robots'] ||= []
     #   database['total'] ||= 0
@@ -25,11 +29,10 @@ class RobotManager
 
   # def raw_robots
   #   database.from(:robots)
-  #
   # end
 
   def all
-    database.from(:robots).to_a.map { |data| Robot.new(data) }
+    dataset.to_a.map { |data| Robot.new(data) }
   end
 
   # def raw_robot(id)
@@ -37,11 +40,11 @@ class RobotManager
   # end
 
   def find(id)
-    Robot.new(database.from(:robots).where(:id => id).to_a.first)
+    Robot.new(dataset.where(:id => id).to_a.first)
   end
 
   def update(id, robot)
-    database.from(:robots).where(:id => id).update(robot)
+    dataset.where(:id => id).update(robot)
 
     # database.transaction do
     #   target = database['robots'].find { |robot| robot['id'] == id }
@@ -56,7 +59,7 @@ class RobotManager
   end
 
   def delete(id)
-    database.from(:robots).where(:id => id).delete
+    dataset.where(:id => id).delete
     # database.transaction do
     #   database['robots'].delete_if { |robot| robot['id'] == id }
     #   database['total'] -= 1
@@ -64,10 +67,40 @@ class RobotManager
   end
 
   def delete_all
-    database.from(:robots).delete
+    dataset.delete
   end
 
   def robot_count
     all.size
+  end
+
+  def average_age
+    all.reduce(0) do |sum, robot|
+      sum += robot.age
+    end/robot_count
+  end
+
+  def number_of_robots_hired_annually
+    annual_hires_count = Hash.new
+    dataset.map(:date_hired).group_by { |date| date }.map { |date, events| annual_hires_count[date] = events.count}
+    annual_hires_count
+  end
+
+  def number_of_robots_per_department
+    per_department_count = Hash.new
+    dataset.map(:department).group_by { |department| department }.map { |department, heads| per_department_count[department] = heads.count }
+    per_department_count
+  end
+
+  def number_of_robots_per_city
+    per_city_count = Hash.new
+    dataset.map(:city).group_by { |city| city }.map { |city, heads| per_city_count[city] = heads.count }
+    per_city_count
+  end
+
+  def number_of_robots_per_state
+    per_state_count = Hash.new
+    dataset.map(:state).group_by { |state| state }.map { |state, heads| per_state_count[state] = heads.count }
+    per_state_count
   end
 end

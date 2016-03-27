@@ -4,7 +4,13 @@ class RobotWorldApp < Sinatra::Base
   set :server, 'webrick'
 
   get '/' do
-    erb :dashboard
+    @robots = robot_manager
+    if @robots.robot_count != 0
+      average_age = @robots.average_age
+    else
+      message = "Stats pending"
+    end
+    erb :dashboard, :locals => { :average_age => average_age, :message => message}
   end
 
   get '/robots' do
@@ -46,7 +52,7 @@ class RobotWorldApp < Sinatra::Base
   end
 
  def robot_manager
-   if ENV["RACK_ENV"] == "test"
+  if ENV["RACK_ENV"] == "test"
     database = Sequel.sqlite('db/robot_manager_test.sqlite3')
   else
     database = Sequel.sqlite('db/robot_manager_development.sqlite3')
