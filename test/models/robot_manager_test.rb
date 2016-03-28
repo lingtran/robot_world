@@ -34,7 +34,7 @@ class RobotManagerTest < Minitest::Test
 
   def test_can_find_robot_with_id
     # skip
-    
+
     create_robots
 
     robot = robot_manager.find(1)
@@ -113,7 +113,7 @@ class RobotManagerTest < Minitest::Test
     assert_equal ["03/25/2015", "03/25/2015"], robot_manager.all.map { |robot| robot.date_hired }
 
     assert robot_manager.number_of_robots_hired_annually.is_a?(Hash)
-    assert_equal "03/25/2015", robot_manager.number_of_robots_hired_annually.keys.last
+    assert_equal 2015, robot_manager.number_of_robots_hired_annually.keys.last
     assert_equal 2, robot_manager.number_of_robots_hired_annually.values.last
   end
 

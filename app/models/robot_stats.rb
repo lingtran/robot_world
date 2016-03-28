@@ -16,7 +16,7 @@ class RobotStats
   end
 
   def annual_hires
-    robot_manager.dataset.map(:date_hired).group_by { |date| date }.map { |date, events| annual_hires_count[date] = events.count}
+    robot_manager.dataset.map(:date_hired).group_by { |date| Date.strptime(date, '%m/%d/%Y').year }.map { |year, events| annual_hires_count[year] = events.count}
     annual_hires_count
   end
 

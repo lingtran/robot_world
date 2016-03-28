@@ -12,7 +12,7 @@ class RobotWorldApp < Sinatra::Base
       per_city_count = @robots.number_of_robots_per_city
       per_state_count = @robots.number_of_robots_per_state
     else
-      message = "Stats are pending"
+      message = "Stats will be populated once you create robots!"
     end
     erb :dashboard, :locals => { :average_age => average_age, :annual_hires_count => annual_hires_count, :per_department_count => per_department_count, :per_city_count => per_city_count, :per_state_count => per_state_count, :message => message }
   end

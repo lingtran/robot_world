@@ -33,7 +33,7 @@ class RobotStatsTest < Minitest::Test
     robot_stats.annual_hires
 
     assert robot_stats.annual_hires_count.is_a?(Hash)
-    assert_equal "03/25/2015", robot_stats.annual_hires_count.keys.last
+    assert_equal 2015, robot_stats.annual_hires_count.keys.last
     assert_equal 2, robot_stats.annual_hires_count.values.last
   end
 

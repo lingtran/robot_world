@@ -1,16 +1,51 @@
 <h1>Robots in this World</h1>
 
 <p>
-  Robot Stats
+  <i>Some stats about your robo friends</i>
 </p>
-
-<%= average_age %>
-<%= annual_hires_count %>
-<%= per_department_count %>
-<%= per_city_count %>
-<%= per_state_count %>
 
 <%= message %>
 
+<div class="row">
+  <table id="stats-table" class="table" style="width:100%">
+    <tr>
+      <th class="col-md-1.5">Average Age
+        <br> (years)
+      </th>
+      <th class="col-md-2.5">Number of Robots Hired Annually
+        <br> (YYYY: num)
+      </th>
+      <th class="col-md-3.5">Number of Robots Per Department
+        <br> (num)
+      </th>
+      <th class="col-md-2.5">Number of Robots Per City
+        <br> (num)
+      </th>
+      <th class="col-md-3">Number of Robots Per State
+        <br> (num)
+      </th>
+    </tr>
+
+    <tr>
+      <td> <%= average_age %> </td>
+      <td> <% annual_hires_count.each_pair do |key, value| %>
+            <%= key %>: <%= value %><br>
+            <% end %>
+      </td>
+      <td> <% per_department_count.each_pair do |key, value| %>
+            <%= key %>: <%= value %><br>
+            <% end %>
+      </td>
+      <td> <% per_city_count.each_pair do |key, value| %>
+            <%= key %>: <%= value %><br>
+            <% end %>
+      </td>
+      <td> <% per_state_count.each_pair do |key, value| %>
+            <%= key %>: <%= value %><br>
+            <% end %>
+      </td>
+    </tr>
+  </table>
+</div>
 
 <!-- stats average robot age, a breakdown of how many robots were hired each year, and number of robots in each department/city/state.-->
