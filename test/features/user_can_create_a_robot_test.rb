@@ -14,8 +14,8 @@ class UserCanCreateARobotTest < Minitest::Test
     fill_in("robot[name]", with: "Esther")
     fill_in("robot[city]", with: "Broncos City")
     fill_in("robot[state]", with: "Wild West State")
-    fill_in("robot[birthdate]", with: "Independence Day")
-    fill_in("robot[date_hired]", with: "Yesterday")
+    fill_in("robot[birthdate]", with: "04/30/1987")
+    fill_in("robot[date_hired]", with: "03/25/2015")
     fill_in("robot[department]", with: "Awesome Possum")
     click_button("Submit")
     assert_equal '/robots', current_path

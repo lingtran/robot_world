@@ -5,9 +5,19 @@ body {
 }
 
 button {
-  background-color: green;
-  color: white;
-  margin: 1px
+  margin: 5px
+}
+
+#home {
+  color: white
+}
+
+#robots{
+  color: white
+}
+
+#new {
+  color: white
 }
 
 #return {

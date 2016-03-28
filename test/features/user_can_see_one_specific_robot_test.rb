@@ -25,7 +25,7 @@ class UserCanSeeOneSpecificRobotTest < Minitest::Test
     refute page.has_content?("Esther 2")
 
     within("#robot-table") do
-      assert page.has_content?("President's Day 1")
+      assert page.has_content?("04/30/1987")
       assert page.has_content?("Mayhem 1")
     end
 

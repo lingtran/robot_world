@@ -12,7 +12,7 @@
   <% @robots.each do |robot| %>
     <tr id="robot-<%= robot.id %>">
       <td> <%= robot.id %> </td>
-      <td> <img src="<%= robot.avatar %>" alt="avatar" id="avatar"/></td>
+      <td> <img src="<%= robot.avatar %>" alt="avatar" id="avatar" width=200px/></td>
       <td> <a href="/robots/<%= robot.id %>"> <%= robot.name %> </a></td>
       <td><a href="/robots/<%= robot.id %>/update">Update</a></td>
       <td>
